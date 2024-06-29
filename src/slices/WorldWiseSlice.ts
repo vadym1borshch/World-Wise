@@ -41,22 +41,32 @@ type StateType = {
   error: string | undefined
 }
 
-const initialState: StateType = {
-  cities: [],
-  countries: [],
-  status: 'idle',
-  error: undefined,
-}
+const URL = `http://localhost:9000/cities`
 
 export const getCities = createAsyncThunk(
   'world_wise/getCities',
   async (query) => {
-    const url = `http://localhost:9000/cities`
-
-    const res = await axios.get(url)
+    const res = await axios.get(URL)
     return res.data
   },
 )
+export const addCity = async (city: CityType) => {
+  try {
+    const response = await axios.post(URL, city)
+    console.log('city added', response.data)
+  } catch (error) {
+    console.error("Error - city don't added", error)
+  }
+}
+
+export const deleteCity = async (id: any) => {
+  try {
+    const response = await axios.delete(`${URL}/${id}`)
+    console.log('city deleted', response.data)
+  } catch (error) {
+    console.error("Error - city don't delete", error)
+  }
+}
 
 export const fetchCountries = createAsyncThunk(
   'world_wise/fetchCountries',
@@ -72,6 +82,7 @@ export const fetchCountries = createAsyncThunk(
               format: 'json',
               lat: city.position.lat,
               lon: city.position.lng,
+              'accept-language': 'en',
             },
           },
         )
@@ -104,12 +115,22 @@ export const fetchCountries = createAsyncThunk(
   },
 )
 
+const initialState: StateType = {
+  cities: [],
+  countries: [],
+  status: 'idle',
+  error: undefined,
+}
+
 const worldWiseSlice = createSlice({
   name: 'worldWise',
   initialState,
   reducers: {
-    setCountries: (state, action: PayloadAction<(CountriesType | undefined)[]>) => {
-      state.countries = [...action.payload]
+    addCityAction: (state, action: PayloadAction<CityType>) => {
+        state.cities = [...state.cities, action.payload]
+    },
+    deleteCityAction: (state, action: PayloadAction<string>) => {
+      state.cities = state.cities.filter((city) => city.id !== action.payload)
     },
   },
   extraReducers: (builder) => {
@@ -133,7 +154,7 @@ const worldWiseSlice = createSlice({
       .addCase(
         fetchCountries.fulfilled,
         (state, action: PayloadAction<(CountriesType | undefined)[]>) => {
-          state.countries = [ ...action.payload]
+          state.countries = [...action.payload]
         },
       )
       .addCase(fetchCountries.rejected, (state, action) => {
@@ -143,6 +164,6 @@ const worldWiseSlice = createSlice({
   },
 })
 
-export const { setCountries } = worldWiseSlice.actions
+export const { addCityAction, deleteCityAction } = worldWiseSlice.actions
 
 export default worldWiseSlice.reducer

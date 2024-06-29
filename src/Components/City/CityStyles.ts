@@ -9,4 +9,24 @@ export const cityStyles: SxProps = {
   alignItems: 'center',
   borderRadius: '10px',
   padding: '0 10px',
+  '& .flag-container': {
+    display: 'flex',
+    alignItems: 'center',
+    '& .delete-button': {
+      minWidth: 0,
+      width: '20px',
+      height: '20px',
+      backgroundColor: 'red',
+      color: 'white',
+      borderRadius: "50%",
+      margin: '0 10px',
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    '& .flag': {
+      width: '20px',
+      height: '20px',
+    },
+  },
 }

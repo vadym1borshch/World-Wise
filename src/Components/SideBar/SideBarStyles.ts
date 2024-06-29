@@ -7,6 +7,7 @@ export const sideBarStyles: SxProps = {
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
+  height: '100vh',
   '& .navBar': {
     width: '50%',
     display: 'flex',

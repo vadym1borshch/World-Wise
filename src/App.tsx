@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from './Pages/HomePage'
 import { Login } from './Pages/Login'
@@ -43,6 +43,7 @@ export const App: FC = () => {
           <Route path="form" element={<Form />} />
           <Route path="cities" element={<Cities />} />
           <Route path="countries" element={<Countries />} />
+          <Route path="cityinfo" element={<>city info</>} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -4,4 +4,5 @@ export const appLayoutStyles: SxProps<Theme> = {
   position: 'relative',
   display: 'flex',
   justifyContent: 'space-between',
+  zIndex:0
 }

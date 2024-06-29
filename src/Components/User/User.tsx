@@ -10,7 +10,9 @@ export const User: FC = () => {
         width: 100,
         height: 20,
         color: 'white',
-        right: 0
+        right: 0,
+        zIndex: 10,
+        margin: '20px'
       }}
     >
       User

@@ -6,7 +6,7 @@ import { sideBarStyles } from './SideBarStyles'
 export const SideBar: FC = () => {
   const navigate = useNavigate()
 
-  const [active, setActive] = useState<string>('')
+  const [active, setActive] = useState<string>('cities')
 
   const onclickHandler = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     navigate(e.currentTarget.id)
@@ -31,7 +31,9 @@ export const SideBar: FC = () => {
           Countries
         </span>
       </Box>
-      <Outlet />
+      <Box>
+        <Outlet />
+      </Box>
     </Box>
   )
 }

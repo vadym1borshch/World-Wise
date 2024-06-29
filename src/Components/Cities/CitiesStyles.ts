@@ -7,4 +7,5 @@ export const citiesStyles: SxProps = {
   alignItems: 'center',
   flexDirection: 'column',
   gap: 1,
+  overflow: 'auto',
 }
