@@ -19,6 +19,7 @@ export const Map: FC = () => {
   const navigate = useNavigate()
   const context = useContext(LayoutContext)
   const cities = useSelector(citiesSelector)
+
   const centered = (): LatLngExpression | undefined => {
     if (context?.city) {
       const lat = context.city.position.lat
@@ -27,6 +28,7 @@ export const Map: FC = () => {
     }
     return [51.505, -0.09]
   }
+
   const mapClickHandler = (e: any) => {
     context?.setCoordinates({
       lat: e.latlng.lat,
@@ -34,6 +36,8 @@ export const Map: FC = () => {
     })
     navigate('form')
   }
+
+  centered()
   return (
     <Box sx={mapStyles}>
       <MapContainer center={centered()} zoom={8} scrollWheelZoom={false}>

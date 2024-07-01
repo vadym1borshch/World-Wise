@@ -25,15 +25,63 @@
       "id": "98443198"
     },
     {
-      "id": "3527f0b6-a577-42bd-9b38-185ff62162a5",
-      "cityName": "Manchester",
+      "id": "5401bd50-db10-4142-8dad-a68facaa5f0f",
+      "cityName": "Cambridge",
       "country": "United Kingdom",
       "emoji": "gb",
-      "date": "",
+      "date": "01.07.2024",
+      "notes": "awer",
+      "position": {
+        "lat": "52.1942712",
+        "lng": "0.15306274088113264"
+      }
+    },
+    {
+      "id": "91ad4795-c6e3-4c7b-9bdc-d7751941bdad",
+      "cityName": "Birmingham",
+      "country": "United Kingdom",
+      "emoji": "gb",
+      "date": "01.07.2024",
       "notes": "",
       "position": {
-        "lat": "53.45873647454575",
-        "lng": "-2.210525527163"
+        "lat": "52.465709990524054",
+        "lng": "-1.826212104671657"
+      }
+    },
+    {
+      "id": "815f381b-9e54-404e-ba23-c060d12dd9bc",
+      "cityName": "Wrocław",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "01.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "51.100087650000006",
+        "lng": "17.049520024477577"
+      }
+    },
+    {
+      "id": "f71d873e-d07a-4449-a27e-41a6d5a78cb9",
+      "cityName": "Poznan",
+      "country": "Poland",
+      "emoji": "pl",
+      "date": "01.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "52.39558295",
+        "lng": "16.91138395"
+      }
+    },
+    {
+      "id": "a4cf393a-d111-4950-9f80-2537b73fa799",
+      "cityName": "Vinnytsia",
+      "country": "Ukraine",
+      "emoji": "ua",
+      "date": "01.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "49.2677734",
+        "lng": "28.4975764"
       }
     }
   ]

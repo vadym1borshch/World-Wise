@@ -11,8 +11,6 @@ import { AppDispatch } from '../../store/store'
 import Flag from 'react-world-flags'
 import { useNavigate } from 'react-router-dom'
 import { LayoutContext } from '../../context/AppLayoutContext'
-import { DomEvent } from 'leaflet'
-import on = DomEvent.on
 
 interface ICityProps {
   city: CityType

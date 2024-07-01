@@ -12,6 +12,7 @@ import { Form } from './Components/Form/Form'
 import { Countries } from './Components/Countries/Countries'
 import { AppLayoutContext } from './context/AppLayoutContext'
 import { citiesSelector } from './slices/selectors'
+import { CityInfo } from './Components/CityInfo/CityInfo'
 
 export const App: FC = () => {
   const cities = useSelector(citiesSelector)
@@ -43,7 +44,7 @@ export const App: FC = () => {
           <Route path="form" element={<Form />} />
           <Route path="cities" element={<Cities />} />
           <Route path="countries" element={<Countries />} />
-          <Route path="cityinfo" element={<>city info</>} />
+          <Route path="cityinfo" element={<CityInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>

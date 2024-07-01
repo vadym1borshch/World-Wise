@@ -37,8 +37,10 @@ export const Form: FC = () => {
         return c.cityName === city?.cityName
       })
       if (!added) {
-        dispatch(addCityAction({ ...city, date: date ? date : '' }))
-        addCity(city)
+        dispatch(
+          addCityAction({ ...city, date: date ? date : '', notes: note }),
+        )
+        addCity({ ...city, date: date ? date : '', notes: note })
         navigate('/app/cities')
       }
       return

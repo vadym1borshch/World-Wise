@@ -26,6 +26,7 @@ export const AppLayoutContext: FC<IAppLayoutContextProps> = ({ children }) => {
   const [coordinates, setCoordinates] = useState<CoordsType | null>(null)
   const [checkedCity, setCheckedCity] = useState<CityType | null>(null)
 
+  console.log(checkedCity)
   useEffect(() => {
     if (coordinates) {
       const getCoordsInfo = async () => {

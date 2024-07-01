@@ -6,12 +6,24 @@ interface IBackButtonProps {
   sx?: SxProps
   children: string
   icon?: ReactNode
+  callback?: () => void
 }
 
-export const BackButton: FC<IBackButtonProps> = ({ sx, icon, children }) => {
+export const BackButton: FC<IBackButtonProps> = ({
+  sx,
+  icon,
+  children,
+  callback,
+}) => {
   const navigate = useNavigate()
   return (
-    <Button sx={{ ...sx }} onClick={() => navigate(-1)}>
+    <Button
+      sx={{ ...sx }}
+      onClick={() => {
+        if (callback) callback()
+        navigate(-1)
+      }}
+    >
       {icon && <Icon>{icon}</Icon>}
       {children}
     </Button>

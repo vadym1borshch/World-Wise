@@ -31,9 +31,7 @@ export const SideBar: FC = () => {
           Countries
         </span>
       </Box>
-      <Box>
-        <Outlet />
-      </Box>
+      <Outlet />
     </Box>
   )
 }
