@@ -3,7 +3,7 @@ import axios from 'axios'
 import { v4 } from 'uuid'
 
 export type StatusType = 'succeeded' | 'loading' | 'failed' | 'idle'
-type ResType = {
+/*type ResType = {
   data: {
     address: {
       country: string
@@ -15,7 +15,19 @@ type ResType = {
       village: string
     }
   }
+}*/
+export type ErrorType = {
+  type?: 'login' | 'register'
+  message?: string
 }
+
+export type UserType = {
+  id: string
+  name: string
+  email: string
+  password: string
+}
+
 export type CityType = {
   cityName: string
   country: string
@@ -28,98 +40,74 @@ export type CityType = {
   }
   id: string
 }
-export type CountriesType = {
+export type CountryType = {
   id: string
-  country: string
+  name: string
   countryCode: string
 }
 
 type StateType = {
   cities: CityType[]
-  countries: (CountriesType | undefined)[]
+  countries: CountryType[]
   status: StatusType
-  error: string | undefined
+  error: ErrorType | undefined
+  currentUser: UserType | null
 }
 
-const URL = `http://localhost:9000/cities`
+const GET_CITIES_URL = `http://localhost:9000/cities`
+const GET_USERS_URL = `http://localhost:9000/users`
 
-export const getCities = createAsyncThunk(
-  'world_wise/getCities',
-  async (query) => {
-    const res = await axios.get(URL)
-    return res.data
+export const getCities = createAsyncThunk('world_wise/getCities', async () => {
+  const res = await axios.get(GET_CITIES_URL)
+  return res.data
+})
+export const getUsers = createAsyncThunk(
+  'world_wise/getUser',
+  async (userData: { name: string; email: string; password: string }) => {
+    const res = await axios.get(GET_USERS_URL)
+    return { users: res.data, userData }
   },
 )
 export const addCity = async (city: CityType) => {
   try {
-    const response = await axios.post(URL, city)
+    const response = await axios.post(GET_CITIES_URL, city)
     console.log('city added', response.data)
   } catch (error) {
     console.error("Error - city don't added", error)
   }
 }
+export const addNewUser = async (user: UserType) => {
+  try {
+    const response = await axios.post(GET_USERS_URL, user)
+    console.log('user added', response.data)
+  } catch (error) {
+    console.error("Error - user don't added", error)
+  }
+}
 
 export const deleteCity = async (id: any) => {
   try {
-    const response = await axios.delete(`${URL}/${id}`)
+    const response = await axios.delete(`${GET_CITIES_URL}/${id}`)
     console.log('city deleted', response.data)
   } catch (error) {
     console.error("Error - city don't delete", error)
   }
 }
-
-export const fetchCountries = createAsyncThunk(
-  'world_wise/fetchCountries',
-  async (cities: CityType[], { rejectWithValue }) => {
-    const fetchCountry = async (
-      city: CityType,
-    ): Promise<CountriesType | undefined> => {
-      try {
-        const res = await axios.get(
-          'https://nominatim.openstreetmap.org/reverse',
-          {
-            params: {
-              format: 'json',
-              lat: city.position.lat,
-              lon: city.position.lng,
-              'accept-language': 'en',
-            },
-          },
-        )
-
-        return {
-          id: v4(),
-          country: res.data.address.country,
-          countryCode: res.data.address.country_code,
-        }
-      } catch (err: any) {
-        console.log(err.message)
-        return undefined
-      }
-    }
-
-    const processCities = async (
-      cities: CityType[],
-    ): Promise<(CountriesType | undefined)[]> => {
-      const countriesPromises = cities.map(fetchCountry)
-      const newCountries = await Promise.all(countriesPromises)
-      return newCountries
-    }
-
-    try {
-      const countries = await processCities(cities)
-      return countries
-    } catch (err: any) {
-      return rejectWithValue(err.message)
-    }
-  },
-)
+export const deleteUser = async (id: any) => {
+  try {
+    const response = await axios.delete(`${GET_USERS_URL}/${id}`)
+    console.log('user deleted', response.data)
+  } catch (error) {
+    console.error("Error - user don't delete", error)
+  }
+}
 
 const initialState: StateType = {
   cities: [],
   countries: [],
   status: 'idle',
   error: undefined,
+  currentUser: null,
 }
 
 const worldWiseSlice = createSlice({
@@ -127,11 +115,22 @@ const worldWiseSlice = createSlice({
   initialState,
   reducers: {
     addCityAction: (state, action: PayloadAction<CityType>) => {
-        state.cities = [...state.cities, action.payload]
+      state.cities = [...state.cities, action.payload]
     },
     deleteCityAction: (state, action: PayloadAction<string>) => {
       state.cities = state.cities.filter((city) => city.id !== action.payload)
     },
+    setErrorAction: (state, action: PayloadAction<ErrorType>) => {
+      state.error = action.payload
+    },
+    resetErrorAction: (state) => {
+      state.error = undefined
+    },
+    loginAction: (
+      state,
+      action: PayloadAction<{ name: string; email: string; password: string }>,
+    ) => {},
+    createAccountAction: (state, action: PayloadAction<UserType>) => {},
   },
   extraReducers: (builder) => {
     builder
@@ -146,24 +145,54 @@ const worldWiseSlice = createSlice({
       )
       .addCase(getCities.rejected, (state, action) => {
         state.status = 'failed'
-        state.error = action.error.message
+        state.error = { message: action.error.message }
       })
-      .addCase(fetchCountries.pending, (state) => {
+      .addCase(getUsers.pending, (state) => {
         state.status = 'loading'
       })
       .addCase(
-        fetchCountries.fulfilled,
-        (state, action: PayloadAction<(CountriesType | undefined)[]>) => {
-          state.countries = [...action.payload]
+        getUsers.fulfilled,
+        (
+          state,
+          action: PayloadAction<{ users: UserType[]; userData: any }>,
+        ) => {
+          console.log(action.payload)
+          const user = action.payload.users.find(
+            (u) =>
+              u.name.toLowerCase() ===
+              action.payload.userData.name.toLowerCase(),
+          )
+          if (user) {
+            if (
+              user.password !== action.payload.userData.password ||
+              user.email !== action.payload.userData.email
+            ) {
+              state.error = { type: 'login', message: 'wrong pass or email' }
+              return
+            }
+            state.currentUser = user
+            return
+          } else {
+            state.error = {
+              type: 'register',
+              message:
+                "'User not found. Please register a new account. Would you like to do it now?'",
+            }
+          }
         },
       )
-      .addCase(fetchCountries.rejected, (state, action) => {
+      .addCase(getUsers.rejected, (state, action) => {
         state.status = 'failed'
-        state.error = action.error.message
+        state.error = { message: action.error.message }
       })
   },
 })
 
-export const { addCityAction, deleteCityAction } = worldWiseSlice.actions
+export const {
+  addCityAction,
+  setErrorAction,
+  resetErrorAction,
+  deleteCityAction,
+} = worldWiseSlice.actions
 
 export default worldWiseSlice.reducer

@@ -2,7 +2,7 @@ import { SxProps } from '@mui/material'
 
 export const cityStyles: SxProps = {
   width: '80%',
-  height: '50px',
+  minHeight: '40px',
   display: 'flex',
   justifyContent: 'space-between',
   backgroundColor: 'beige',

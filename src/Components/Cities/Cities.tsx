@@ -4,11 +4,14 @@ import { City } from '../City/City'
 import { useSelector } from 'react-redux'
 import { citiesSelector } from '../../slices/selectors'
 import { citiesStyles } from './CitiesStyles'
+import { useHeight } from '../../hooks/useHeight'
 
 export const Cities: FC = () => {
   const cities = useSelector(citiesSelector)
+  const height = useHeight(80)
+
   return (
-    <Box sx={citiesStyles}>
+    <Box sx={{...citiesStyles, height: height}} >
       {cities.map((city) => (
         <City key={city.id} city={city} />
       ))}

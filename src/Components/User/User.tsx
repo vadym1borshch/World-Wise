@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 
 export const User: FC = () => {
   return (
@@ -7,15 +7,22 @@ export const User: FC = () => {
       sx={{
         position: 'absolute',
         backgroundColor: 'black',
-        width: 100,
-        height: 20,
+        width: 300,
+        height: 60,
         color: 'white',
         right: 0,
         zIndex: 10,
-        margin: '20px'
+        margin: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: "0 5px",
+        borderRadius: '10px'
       }}
     >
-      User
+      <span>image</span>
+      <span>userName</span>
+      <Button>logout</Button>
     </Box>
   )
 }

@@ -37,42 +37,6 @@
       }
     },
     {
-      "id": "91ad4795-c6e3-4c7b-9bdc-d7751941bdad",
-      "cityName": "Birmingham",
-      "country": "United Kingdom",
-      "emoji": "gb",
-      "date": "01.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "52.465709990524054",
-        "lng": "-1.826212104671657"
-      }
-    },
-    {
-      "id": "815f381b-9e54-404e-ba23-c060d12dd9bc",
-      "cityName": "Wrocław",
-      "country": "Poland",
-      "emoji": "pl",
-      "date": "01.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "51.100087650000006",
-        "lng": "17.049520024477577"
-      }
-    },
-    {
-      "id": "f71d873e-d07a-4449-a27e-41a6d5a78cb9",
-      "cityName": "Poznan",
-      "country": "Poland",
-      "emoji": "pl",
-      "date": "01.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "52.39558295",
-        "lng": "16.91138395"
-      }
-    },
-    {
       "id": "a4cf393a-d111-4950-9f80-2537b73fa799",
       "cityName": "Vinnytsia",
       "country": "Ukraine",
@@ -83,6 +47,134 @@
         "lat": "49.2677734",
         "lng": "28.4975764"
       }
+    },
+    {
+      "id": "81cb383e-f2cd-47e3-a9ba-e5c65c5567c4",
+      "cityName": "Hrodna",
+      "country": "Belarus",
+      "emoji": "by",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "53.66173692995114",
+        "lng": "23.9053417391229"
+      }
+    },
+    {
+      "id": "540cd6bc-78fb-4311-883d-92779f334e35",
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "fr",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "48.835449100000005",
+        "lng": "2.378411236154617"
+      }
+    },
+    {
+      "id": "b3b4b021-9b15-47aa-b09e-fe022b25b271",
+      "cityName": "Bletchley",
+      "country": "United Kingdom",
+      "emoji": "gb",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "51.9993383",
+        "lng": "-0.6959499"
+      }
+    },
+    {
+      "id": "93e3e142-3726-4e97-9e39-dc6fbb65c97e",
+      "cityName": "Rome",
+      "country": "Italy",
+      "emoji": "it",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "41.869597",
+        "lng": "12.5138441"
+      }
+    },
+    {
+      "id": "6a8ce9b3-e568-49ef-958b-517a28c726c6",
+      "cityName": "Bashkia Durrës",
+      "country": "Albania",
+      "emoji": "al",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "41.3002748",
+        "lng": "19.492006968292692"
+      }
+    },
+    {
+      "id": "7b45c9a1-ff5b-4a88-872b-9bc5b57cabdc",
+      "cityName": "Shtip",
+      "country": "North Macedonia",
+      "emoji": "mk",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "41.7277433",
+        "lng": "22.1960958"
+      }
+    },
+    {
+      "id": "cedc9572-bd28-4db6-9321-05937d819541",
+      "cityName": "Volos Municipality",
+      "country": "Greece",
+      "emoji": "gr",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "39.34690461628779",
+        "lng": "22.928399533471865"
+      }
+    },
+    {
+      "id": "f1c3e68e-536b-4e7e-bd31-90cbf75bd015",
+      "cityName": "İzmir",
+      "country": "Turkey",
+      "emoji": "tr",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "38.410553278800826",
+        "lng": "27.163684487422735"
+      }
+    },
+    {
+      "id": "c9dfbe66-cb48-41dd-bb50-5b7d1d73815e",
+      "cityName": "village Stae",
+      "country": "Denmark",
+      "emoji": "dk",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "57.088078460290724",
+        "lng": "10.085339096106248"
+      }
+    },
+    {
+      "id": "3a0b8770-fb3a-4e8a-9019-aec60fa86140",
+      "cityName": "Gothenburg",
+      "country": "Sweden",
+      "emoji": "se",
+      "date": "02.07.2024",
+      "notes": "",
+      "position": {
+        "lat": "57.70412385",
+        "lng": "11.991444767764378"
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": "Vadym",
+      "email": "vadym@gmail.com",
+      "password": "jhz584dx",
+      "id": "1"
     }
   ]
 }

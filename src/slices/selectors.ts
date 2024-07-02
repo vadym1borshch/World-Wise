@@ -5,6 +5,10 @@ export const citiesSelector = (state: RootState) =>
   state.worldWiseSlice.cities
 export const countriesSelector = (state: RootState) =>
   state.worldWiseSlice.countries
+export const errorSelector = (state: RootState) =>
+  state.worldWiseSlice.error
+export const currentUserSelector = (state: RootState) =>
+  state.worldWiseSlice.currentUser
 
 // Мемоізований селектор
 /*export const overallMovieValuesSelector = createSelector(
