@@ -5,8 +5,10 @@ import { citiesSelector } from '../../slices/selectors'
 import Flag from 'react-world-flags'
 import { v4 } from 'uuid'
 import { CountryType } from '../../slices/WorldWiseSlice'
+import useWindowSize from '../../hooks/useWindowSize'
 
 export const Countries: FC = () => {
+  const { freeHeight } = useWindowSize(120)
   const cities = useSelector(citiesSelector)
   const countries: CountryType[] = cities.reduce((acc: CountryType[], el) => {
     if (!acc.some((country) => country.name === el.country)) {
@@ -33,7 +35,7 @@ export const Countries: FC = () => {
         gap: '10px',
         overflow: 'auto',
         height: 'auto',
-        maxHeight: 'calc(100vh - 80px)',
+        maxHeight: freeHeight,
         marginBottom: 'auto',
         boxSizing: 'border-box',
         position: 'relative',

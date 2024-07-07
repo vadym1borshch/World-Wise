@@ -2,6 +2,9 @@ import React, { createContext, FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CityType } from '../slices/WorldWiseSlice'
 import { v4 } from 'uuid'
+import { useSelector } from 'react-redux'
+import { currentUserSelector } from '../slices/selectors'
+import { useNavigate } from 'react-router-dom'
 
 export interface IAppLayoutContextProps {
   children: React.ReactNode
@@ -25,8 +28,9 @@ export const LayoutContext = createContext<LayoutContext | null>(null)
 export const AppLayoutContext: FC<IAppLayoutContextProps> = ({ children }) => {
   const [coordinates, setCoordinates] = useState<CoordsType | null>(null)
   const [checkedCity, setCheckedCity] = useState<CityType | null>(null)
+  const currentUser = useSelector(currentUserSelector)
+  const navigate = useNavigate()
 
-  console.log(checkedCity)
   useEffect(() => {
     if (coordinates) {
       const getCoordsInfo = async () => {
@@ -75,6 +79,13 @@ export const AppLayoutContext: FC<IAppLayoutContextProps> = ({ children }) => {
       getCoordsInfo()
     }
   }, [coordinates])
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/')
+    }
+  }, [currentUser, navigate])
+
 
   return (
     <LayoutContext.Provider

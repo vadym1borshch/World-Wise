@@ -10,6 +10,7 @@ export const NavBar: FC = () => {
         display: 'flex',
         gap: 3,
         margin: '10px',
+        zIndex: 100,
         '& a': {
           textDecoration: 'none',
           backgroundColor: 'pink',

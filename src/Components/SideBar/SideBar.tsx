@@ -14,7 +14,11 @@ export const SideBar: FC = () => {
   }
 
   return (
-    <Box sx={sideBarStyles}>
+    <Box
+      sx={{
+        ...sideBarStyles,
+      }}
+    >
       <Box className="navBar">
         <span
           id="cities"

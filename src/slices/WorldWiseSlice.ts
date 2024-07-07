@@ -131,6 +131,9 @@ const worldWiseSlice = createSlice({
       action: PayloadAction<{ name: string; email: string; password: string }>,
     ) => {},
     createAccountAction: (state, action: PayloadAction<UserType>) => {},
+    logoutAction: (state) => {
+      state.currentUser = null
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -193,6 +196,7 @@ export const {
   setErrorAction,
   resetErrorAction,
   deleteCityAction,
+  logoutAction
 } = worldWiseSlice.actions
 
 export default worldWiseSlice.reducer

@@ -25,18 +25,6 @@
       "id": "98443198"
     },
     {
-      "id": "5401bd50-db10-4142-8dad-a68facaa5f0f",
-      "cityName": "Cambridge",
-      "country": "United Kingdom",
-      "emoji": "gb",
-      "date": "01.07.2024",
-      "notes": "awer",
-      "position": {
-        "lat": "52.1942712",
-        "lng": "0.15306274088113264"
-      }
-    },
-    {
       "id": "a4cf393a-d111-4950-9f80-2537b73fa799",
       "cityName": "Vinnytsia",
       "country": "Ukraine",
@@ -46,18 +34,6 @@
       "position": {
         "lat": "49.2677734",
         "lng": "28.4975764"
-      }
-    },
-    {
-      "id": "81cb383e-f2cd-47e3-a9ba-e5c65c5567c4",
-      "cityName": "Hrodna",
-      "country": "Belarus",
-      "emoji": "by",
-      "date": "02.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "53.66173692995114",
-        "lng": "23.9053417391229"
       }
     },
     {
@@ -82,18 +58,6 @@
       "position": {
         "lat": "51.9993383",
         "lng": "-0.6959499"
-      }
-    },
-    {
-      "id": "93e3e142-3726-4e97-9e39-dc6fbb65c97e",
-      "cityName": "Rome",
-      "country": "Italy",
-      "emoji": "it",
-      "date": "02.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "41.869597",
-        "lng": "12.5138441"
       }
     },
     {
@@ -130,42 +94,6 @@
       "position": {
         "lat": "39.34690461628779",
         "lng": "22.928399533471865"
-      }
-    },
-    {
-      "id": "f1c3e68e-536b-4e7e-bd31-90cbf75bd015",
-      "cityName": "İzmir",
-      "country": "Turkey",
-      "emoji": "tr",
-      "date": "02.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "38.410553278800826",
-        "lng": "27.163684487422735"
-      }
-    },
-    {
-      "id": "c9dfbe66-cb48-41dd-bb50-5b7d1d73815e",
-      "cityName": "village Stae",
-      "country": "Denmark",
-      "emoji": "dk",
-      "date": "02.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "57.088078460290724",
-        "lng": "10.085339096106248"
-      }
-    },
-    {
-      "id": "3a0b8770-fb3a-4e8a-9019-aec60fa86140",
-      "cityName": "Gothenburg",
-      "country": "Sweden",
-      "emoji": "se",
-      "date": "02.07.2024",
-      "notes": "",
-      "position": {
-        "lat": "57.70412385",
-        "lng": "11.991444767764378"
       }
     }
   ],

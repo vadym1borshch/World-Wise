@@ -31,8 +31,12 @@ export const City: FC<ICityProps> = ({ city }) => {
       context.setCheckedCity(city)
     }
   }
+  const active = {
+    backgroundColor: `${city.id === context?.city?.id ? '#81c784' : 'white'}`,
+  }
+
   return (
-    <Box sx={cityStyles} onClick={onCityClick}>
+    <Box sx={{ ...cityStyles, ...active }} onClick={() => onCityClick()}>
       <span className="city_name">{city.cityName}</span>
       <Box className="flag-container">
         <span className="country_flug">

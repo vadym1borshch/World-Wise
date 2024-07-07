@@ -4,11 +4,11 @@ import { City } from '../City/City'
 import { useSelector } from 'react-redux'
 import { citiesSelector } from '../../slices/selectors'
 import { citiesStyles } from './CitiesStyles'
-import { useHeight } from '../../hooks/useHeight'
+import useWindowSize from '../../hooks/useWindowSize'
 
 export const Cities: FC = () => {
   const cities = useSelector(citiesSelector)
-  const height = useHeight(80)
+  const { height } = useWindowSize(80)
 
   return (
     <Box sx={{...citiesStyles, height: height}} >

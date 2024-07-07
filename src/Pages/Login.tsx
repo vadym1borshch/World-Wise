@@ -3,8 +3,15 @@ import { Box, Button, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch } from '../store/store'
-import { getUsers, resetErrorAction, setErrorAction } from '../slices/WorldWiseSlice'
+import {
+  getUsers,
+  resetErrorAction,
+  setErrorAction,
+} from '../slices/WorldWiseSlice'
 import { currentUserSelector, errorSelector } from '../slices/selectors'
+import { loginStyles } from './LoginStyles'
+
+const fieldsErr = 'please, fill all fields'
 
 export const Login: FC = () => {
   const [name, setName] = useState('')
@@ -17,7 +24,7 @@ export const Login: FC = () => {
 
   const loginHandler = useCallback(() => {
     if (!name || !email || !password) {
-      dispatch(setErrorAction({ type: 'login', message: 'fill all fields' }))
+      dispatch(setErrorAction({ type: 'login', message: fieldsErr }))
       return
     }
     dispatch(getUsers({ name, email, password }))
@@ -26,7 +33,7 @@ export const Login: FC = () => {
 
   const registerHandler = useCallback(() => {
     if (!name || !email || !password) {
-      dispatch(setErrorAction({ type: 'register', message: 'fill all fields' }))
+      dispatch(setErrorAction({ type: 'register', message: fieldsErr }))
       return
     }
     console.log('register')
@@ -48,7 +55,7 @@ export const Login: FC = () => {
       if (error?.type === 'login') {
         return (
           <>
-            <span>{error.message}</span>
+            <span className="error">{error.message}</span>
             <Button onClick={loginHandler}>Login</Button>
           </>
         )
@@ -56,7 +63,7 @@ export const Login: FC = () => {
       if (error?.type === 'register') {
         return (
           <>
-            <span>{error.message}</span>
+            <span className="error">{error.message}</span>
             <Button onClick={registerHandler}>Register</Button>
             <Button onClick={cancelRegistrationHandler}>Cancel</Button>
           </>
@@ -75,26 +82,21 @@ export const Login: FC = () => {
 
   return (
     <Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 1,
-          marginTop: 1,
-        }}
-      >
+      <Box sx={{ ...loginStyles }}>
         <TextField
+          size="small"
           label="Enter Your Name"
           value={name}
           onChange={(e) => setName(e.currentTarget.value)}
         />
         <TextField
+          size="small"
           label="Email"
           value={email}
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
         <TextField
+          size="small"
           label="Password"
           type="password"
           value={password}
