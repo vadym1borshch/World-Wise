@@ -126,11 +126,6 @@ const worldWiseSlice = createSlice({
     resetErrorAction: (state) => {
       state.error = undefined
     },
-    loginAction: (
-      state,
-      action: PayloadAction<{ name: string; email: string; password: string }>,
-    ) => {},
-    createAccountAction: (state, action: PayloadAction<UserType>) => {},
     logoutAction: (state) => {
       state.currentUser = null
     },
@@ -159,11 +154,10 @@ const worldWiseSlice = createSlice({
           state,
           action: PayloadAction<{ users: UserType[]; userData: any }>,
         ) => {
-          console.log(action.payload)
           const user = action.payload.users.find(
             (u) =>
-              u.name.toLowerCase() ===
-              action.payload.userData.name.toLowerCase(),
+              u.email ===
+              action.payload.userData.email,
           )
           if (user) {
             if (

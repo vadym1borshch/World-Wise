@@ -6,6 +6,7 @@ import Flag from 'react-world-flags'
 import { v4 } from 'uuid'
 import { CountryType } from '../../slices/WorldWiseSlice'
 import useWindowSize from '../../hooks/useWindowSize'
+import { countriesStyles, countryStyle } from './CountriesStyles'
 
 export const Countries: FC = () => {
   const { freeHeight } = useWindowSize(120)
@@ -27,39 +28,14 @@ export const Countries: FC = () => {
   return (
     <Box
       sx={{
-        width: '90%',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: '10px',
-        overflow: 'auto',
-        height: 'auto',
+        ...countriesStyles,
         maxHeight: freeHeight,
-        marginBottom: 'auto',
-        boxSizing: 'border-box',
-        position: 'relative',
       }}
     >
       {countries.map((country) => {
         return (
-          <Box
-            key={country.id}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '170px',
-              height: '100px',
-              backgroundColor: 'whitesmoke',
-              borderRadius: '10px',
-            }}
-          >
-            <Flag
-              code={country.countryCode.toUpperCase()}
-              style={{ width: '50px', height: '50px' }}
-            />
+          <Box key={country.id} sx={countryStyle}>
+            <Flag className="flag" code={country.countryCode.toUpperCase()} />
             <Box>{country.name}</Box>
           </Box>
         )

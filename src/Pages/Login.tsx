@@ -1,4 +1,11 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  ChangeEvent,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { Box, Button, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,9 +16,19 @@ import {
   setErrorAction,
 } from '../slices/WorldWiseSlice'
 import { currentUserSelector, errorSelector } from '../slices/selectors'
-import { loginStyles } from './LoginStyles'
+import {
+  inputsFieldsStyles,
+  loginContainerStyles,
+  loginStyles,
+} from './LoginStyles'
+import { NavBar } from '../Components/NavBar/NavBar'
 
 const fieldsErr = 'please, fill all fields'
+
+const validateEmail = (email: string): boolean => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return re.test(email)
+}
 
 export const Login: FC = () => {
   const [name, setName] = useState('')
@@ -21,6 +38,13 @@ export const Login: FC = () => {
   const currentUser = useSelector(currentUserSelector)
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
+
+  const emailHadler = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const value = e.currentTarget.value
+    setEmail(value)
+  }
 
   const loginHandler = useCallback(() => {
     if (!name || !email || !password) {
@@ -32,10 +56,15 @@ export const Login: FC = () => {
   }, [dispatch, email, name, password])
 
   const registerHandler = useCallback(() => {
+    if (!validateEmail(email)) {
+      console.log('not valid')
+      return
+    }
     if (!name || !email || !password) {
       dispatch(setErrorAction({ type: 'register', message: fieldsErr }))
       return
     }
+
     console.log('register')
   }, [name, email, password, dispatch])
 
@@ -46,9 +75,6 @@ export const Login: FC = () => {
     dispatch(resetErrorAction())
     navigate('/')
   }, [dispatch, navigate])
-
-  console.log('currentUser', currentUser)
-  console.log('error', error)
 
   const content = useMemo(() => {
     if (error) {
@@ -81,28 +107,31 @@ export const Login: FC = () => {
   }, [currentUser, navigate])
 
   return (
-    <Box>
+    <Box sx={loginContainerStyles}>
+      <NavBar />
       <Box sx={{ ...loginStyles }}>
-        <TextField
-          size="small"
-          label="Enter Your Name"
-          value={name}
-          onChange={(e) => setName(e.currentTarget.value)}
-        />
-        <TextField
-          size="small"
-          label="Email"
-          value={email}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-        />
-        <TextField
-          size="small"
-          label="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
-        />
-        {content}
+        <Box sx={inputsFieldsStyles}>
+          <TextField
+            size="small"
+            label="Enter Your Name"
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          />
+          <TextField
+            size="small"
+            label="Email"
+            value={email}
+            onChange={emailHadler}
+          />
+          <TextField
+            size="small"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+          {content}
+        </Box>
       </Box>
     </Box>
   )

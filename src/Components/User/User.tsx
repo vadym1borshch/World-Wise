@@ -20,7 +20,6 @@ export const User: FC = () => {
   const logoutHandler = () => {
     dispatch(logoutAction())
   }
-  console.log(currentUser)
   return (
     <Box
       onClick={handleOpen}

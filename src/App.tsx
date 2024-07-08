@@ -13,6 +13,7 @@ import { Countries } from './Components/Countries/Countries'
 import { AppLayoutContext } from './context/AppLayoutContext'
 import { CityInfo } from './Components/CityInfo/CityInfo'
 import { createTheme, ThemeProvider } from '@mui/material'
+import { Pricing } from './Pages/Pricing'
 
 const theme = createTheme({
   breakpoints: {
@@ -24,7 +25,7 @@ const theme = createTheme({
       xl: 1920,
     },
   },
-});
+})
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -40,6 +41,7 @@ export const App: FC = () => {
           <Route index element={<HomePage />} />
           <Route path="login" element={<Login />} />
           <Route path="product" element={<ProductPage />} />
+          <Route path="pricing" element={<Pricing />} />
           <Route
             path="app"
             element={

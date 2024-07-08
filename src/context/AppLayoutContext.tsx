@@ -47,7 +47,6 @@ export const AppLayoutContext: FC<IAppLayoutContextProps> = ({ children }) => {
             },
           )
           const info = res.data.address
-          console.log(res.data)
           if (info.city || info.village || info.county) {
             const cityName = () => {
               if (info.city) return info.city
